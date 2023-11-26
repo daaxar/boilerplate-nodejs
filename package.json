@@ -1,0 +1,32 @@
+{
+    "name": "boilerplate-nodejs",
+    "version": "0.1.0",
+    "description": "Yet another NodeJS boilerplate",
+    "main": "build/index.js",
+    "scripts": {
+        "prepare": "husky install"
+    },
+    "keywords": [],
+    "author": "github.com/daaxar",
+    "dependencies": {},
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^6.12.0",
+        "@typescript-eslint/parser": "^6.12.0",
+        "eslint": "^8.54.0",
+        "husky": "^8.0.3",
+        "prettier": "^3.1.0"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=18.12",
+        "npm": ">=9.8"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/daaxar/boilerplate-nodejs.git"
+    },
+    "bugs": {
+        "url": "https://github.com/daaxar/boilerplate-nodejs/issues"
+    },
+    "homepage": "https://github.com/daaxar/boilerplate-nodejs#readme"
+}

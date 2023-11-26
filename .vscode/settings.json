@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        ".husky": true,
+        ".eslintrc.js": true,
+        ".gitignore": true,
+        ".lintstagedrc.json": true,
+        ".nvmrc": true,
+        ".vscode": true,
+        "package-lock.json": true,
+        "LICENSE": true
+    }
+}
