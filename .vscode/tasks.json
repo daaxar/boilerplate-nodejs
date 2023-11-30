@@ -1,4 +1,47 @@
 {
     "version": "2.0.0",
-    "tasks": []
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "docker:build",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: docker:build",
+            "detail": "docker compose build"
+        },
+        {
+            "type": "npm",
+            "script": "docker:up",
+            "problemMatcher": [],
+            "label": "npm: docker:up",
+            "detail": "docker compose up"
+        },
+        {
+            "type": "npm",
+            "script": "docker:down",
+            "problemMatcher": [],
+            "label": "npm: docker:down",
+            "detail": "docker compose down"
+        },
+        {
+            "label": "Compose Up",
+            "type": "docker-compose",
+            "dockerCompose": {
+                "up": {
+                    "customOptions": "dev",
+                    "detached": true,
+                    "build": true
+                }
+            }
+        },
+        {
+            "label": "Compose Down",
+            "type": "docker-compose",
+            "dockerCompose": {
+                "down": {
+                    "removeVolumes": false
+                }
+            }
+        }
+    ]
 }

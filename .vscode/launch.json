@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "DOCKER debug",
+
+            "type": "node",
+            "request": "attach",
+            "restart": true,
+            "port": 9229,
+            "remoteRoot": "/usr/src/app",
+            "preLaunchTask": "Compose Up",
+            "postDebugTask": "Compose Down",
+            "envFile": "${workspaceFolder}/.env.develop"
+        },
+        {
             "name": "LOCAL debug",
             "type": "node-terminal",
             "request": "launch",
