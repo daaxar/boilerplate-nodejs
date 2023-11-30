@@ -1,18 +1,56 @@
 {
     "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        ".husky": true,
-        ".eslintrc.js": true,
-        ".gitignore": true,
-        ".lintstagedrc.json": true,
-        ".nvmrc": true,
-        ".vscode": true,
-        "package-lock.json": true,
-        "LICENSE": true
-    }
+        "**/*.ignore_*": true,
+        "**/.ignore_*": true,
+        "**/_ignore_*": true,
+        "**/.editorconfig": true,
+        "**/.eslintignore": true,
+        "**/.eslintrc*": true,
+        "**/.gitignore": true,
+        "**/.gitattributes": true,
+        "**/.husky": true,
+        "**/.lintstagedrc*": true,
+        "**/.nvmrc": true,
+        "**/.pid": true,
+        "**/.prettierignore": true,
+        "**/.prettierrc*": true,
+        "**/.vscode": true,
+        "**/build": true,
+        "**/coverage": true,
+        "**/dist": true,
+        "**/Dockerfile": true,
+        "**/docker-compose.yml": true,
+        "**/jest.config.js": true,
+        "**/node_modules": true,
+        "**/package-lock.json": true,
+        "LICENSE": true,
+        "README.md": true
+    },
+    "files.watcherExclude": {
+        "**/.ignore_*": true,
+        "**/_ignore_*": true,
+        "**/*.ignore_*": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/coverage": true,
+        "**/node_modules/*/**": true
+    },
+    "search.exclude": {
+        "**/_ignore_*": true,
+        "**/.ignore_*": true,
+        "**/*.code-search": true,
+        "**/*.ignore_*": true,
+        "**/coverage": true,
+        "**/node_modules": true,
+        "/dist": true
+    },
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.sideBar.location": "right",
+    "editor.guides.bracketPairs": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.stickyScroll.enabled": true
 }

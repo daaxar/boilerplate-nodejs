@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "LOCAL debug",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run dev",
+            "envFile": "${workspaceFolder}/.env.develop"
+        },
+        {
+            "name": "Attach debugger",
+            "port": 9229,
+            "request": "attach",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        }
+    ]
+}
