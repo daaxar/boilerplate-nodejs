@@ -4,6 +4,9 @@
     "description": "Yet another NodeJS boilerplate",
     "main": "build/index.js",
     "scripts": {
+        "docker:build": "docker compose build",
+        "docker:up": "docker compose up ",
+        "docker:down": "docker compose down ",
         "build": "npm -s run clean && npm -s run build:ts",
         "build:ts": "esbuild src/index.ts --sourcemap=inline --log-level=debug --minify --bundle --platform=node --target=ES2022 --outdir=build --packages=external",
         "build:watch": "nodemon --ext .ts -w src -w package.json -w .env.develop --signal SIGINT --exec 'npm -s run build:ts'",
@@ -18,7 +21,7 @@
     "keywords": [],
     "author": "github.com/daaxar",
     "devDependencies": {
-        "@types/node": "^20.10.0",
+        "@types/node": "^20.10.1",
         "@typescript-eslint/eslint-plugin": "^6.12.0",
         "@typescript-eslint/parser": "^6.12.0",
         "esbuild": "^0.19.7",

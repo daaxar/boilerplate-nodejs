@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  dev:
+    restart: unless-stopped
+    build:
+      context: .
+      target: develop
+    ports:
+      - "9229:9229"
+    expose:
+      - "9229"
+    volumes:
+      - ./package.json:/usr/src/app/package.json
+      - ./tsconfig.json:/usr/src/app/tsconfig.json
+      - ./src:/usr/src/app/src
+    env_file:
+      - .env.develop
+    environment:
+      - NODE_ENV=develop
+  prod:
+    build:
+      context: .
+      target: production
+    environment:
+      - NODE_ENV=production
