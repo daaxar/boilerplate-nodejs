@@ -8,8 +8,10 @@ services:
       target: develop
     ports:
       - "9229:9229"
+      - "${PORT}:${PORT}"
     expose:
       - "9229"
+      - "${PORT}"
     volumes:
       - ./package.json:/usr/src/app/package.json
       - ./tsconfig.json:/usr/src/app/tsconfig.json
@@ -17,10 +19,16 @@ services:
     env_file:
       - .env.develop
     environment:
+      - PORT=${PORT}
       - NODE_ENV=develop
   prod:
     build:
       context: .
       target: production
+    ports:
+      - "${PORT:-8080}:${PORT:-8080}"
+    expose:
+      - "${PORT:-8080}"
     environment:
+      - PORT=${PORT:-8080}
       - NODE_ENV=production
