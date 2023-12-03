@@ -23,6 +23,11 @@ RUN npm run build
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 FROM builder AS develop
 
+ENV PORT 3000
+
+EXPOSE ${PORT}
+EXPOSE 9229
+
 CMD [ "npm", "run", "dev" ]
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -30,6 +35,9 @@ FROM base AS production
 
 ENV USER=node
 ENV NODE_ENV=production
+ENV PORT 8080
+
+EXPOSE ${PORT}
 
 COPY --from=builder ${ROOT_DIR}/node_modules ${ROOT_DIR}/node_modules
 COPY --from=builder ${ROOT_DIR}/package.json ${ROOT_DIR}/package.json
