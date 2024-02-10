@@ -13,9 +13,9 @@ const server = createServer((req, res) => {
     );
 
     res.write(
-        `Hoy es ${new Date().toLocaleString()} en ${
-            config.hostname
-        } (${config.machine()})`,
+        `Hoy es ${new Date().toLocaleString()} en ${config.hostname} (${
+            config.machine
+        })`,
     );
     res.end();
 });

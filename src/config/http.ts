@@ -1,1 +1,5 @@
-export const http = { port: 3000 };
+import { ConfigHttpServer } from './types';
+
+export const http: ConfigHttpServer = {
+    port: parseInt(process.env.PORT || '3000'),
+};
