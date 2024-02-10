@@ -1,7 +1,5 @@
-import { hostname, machine } from 'node:os';
+import { config } from './config';
 import { createServer } from 'node:http';
-
-const config = { hostname, machine, http: { port: 3000 } };
 
 const server = createServer((req, res) => {
     const now = new Date();
