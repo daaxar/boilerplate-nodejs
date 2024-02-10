@@ -3,7 +3,9 @@ import { ConfigApplication } from '../../config/types';
 import { Routes } from './Routes';
 
 export function Server(config: ConfigApplication) {
-    const routes = Routes(config);
+    const routes = Routes();
+
+    console.log(`Creating server on ${config.hostname}:${config.http.port}`);
 
     return createServer(
         (req: IncomingMessage, res: ServerResponse<IncomingMessage>): void => {
