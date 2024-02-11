@@ -1,5 +1,6 @@
 import { RouteDefinition } from '../../types';
 import { config } from '../../../../config';
+import { getMessage } from '../../../../application/app';
 
 export const homeRoute: RouteDefinition = {
     method: 'GET',
@@ -8,10 +9,8 @@ export const homeRoute: RouteDefinition = {
         res.statusCode = 200;
         res.setHeader('content-type', 'text/plain');
 
-        res.write(
-            `Hoy es ${new Date().toLocaleString()} en ${config.hostname} (${
-                config.machine
-            })`,
-        );
+        const message = getMessage(config);
+
+        res.write(message);
     },
 };
