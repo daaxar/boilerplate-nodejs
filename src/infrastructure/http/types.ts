@@ -1,7 +1,27 @@
-import { IncomingMessage, ServerResponse } from 'node:http';
+import {
+    IncomingHttpHeaders,
+    IncomingMessage,
+    ServerResponse,
+} from 'node:http';
 
-type RouteHandler = (
-    req: IncomingMessage,
+export type ClientRequestMethod = 'GET' | 'POST' | 'HEAD' | 'OPTIONS';
+
+export type ClientRequest = {
+    method: ClientRequestMethod;
+    url: URL;
+    headers: IncomingHttpHeaders;
+    params?: URLSearchParams;
+    body?: string;
+};
+
+export type RouteHandler = (
+    req: ClientRequest,
     res: ServerResponse<IncomingMessage>,
+    incoming?: IncomingMessage,
 ) => void;
-export type RouteDefinition = { path: RegExp | string; handler: RouteHandler };
+
+export type RouteDefinition = {
+    method: ClientRequestMethod;
+    path: RegExp | string;
+    handler: RouteHandler;
+};
