@@ -22,11 +22,16 @@ export function Server(config: ConfigApplication) {
                 const route = getRoute(routes, req);
 
                 if (!route) {
-                    error404(req, res); //, inc);
+                    error404(req, res).catch((e) => error500(res, e));
+                    // error404(req, res, inc).catch(e => error500(res, e));
                 } else if (inc.method === 'POST') {
-                    handlerPOST(route, req, res, inc);
+                    handlerPOST(route, req, res, inc).catch((e) =>
+                        error500(res, e),
+                    );
                 } else {
-                    handlerGET(route, req, res, inc);
+                    handlerGET(route, req, res, inc).catch((e) =>
+                        error500(res, e),
+                    );
                 }
             } catch (error) {
                 error500(res, error);
