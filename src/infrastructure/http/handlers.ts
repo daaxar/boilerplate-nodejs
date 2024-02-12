@@ -1,22 +1,23 @@
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { ClientRequest, RouteDefinition } from './types';
 
-export function handlerGET(
+export async function handlerGET(
     route: RouteDefinition,
     req: ClientRequest,
     res: ServerResponse<IncomingMessage>,
     inc: IncomingMessage,
-): void {
-    route.handler(req, res, inc);
+): Promise<void> {
+    await route.handler(req, res, inc);
 
     res.end();
 }
-export function handlerPOST(
+
+export async function handlerPOST(
     route: RouteDefinition,
     req: ClientRequest,
     res: ServerResponse<IncomingMessage>,
     incoming: IncomingMessage,
-): void {
+): Promise<void> {
     let body = '';
 
     incoming.on('data', (chunk) => {
@@ -24,20 +25,25 @@ export function handlerPOST(
     });
 
     incoming.on('end', () => {
-        route.handler({ ...req, body }, res, incoming);
-
-        res.end();
+        route.handler({ ...req, body }, res, incoming).then(() => {
+            res.end();
+        });
     });
 }
-export function error500(res: ServerResponse<IncomingMessage>, error: Error) {
+
+export async function error500(
+    res: ServerResponse<IncomingMessage>,
+    error: Error,
+): Promise<void> {
     res.statusCode = 500;
     res.write(`ERROR:${error.message}`);
     res.end();
 }
-export function error404(
+
+export async function error404(
     req: ClientRequest,
     res: ServerResponse<IncomingMessage>,
-): void {
+): Promise<void> {
     res.statusCode = 404;
     res.write(`${req.url.href} not found`);
     res.write(JSON.stringify(req, null, 2));
