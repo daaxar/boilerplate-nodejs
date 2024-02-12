@@ -8,7 +8,9 @@ export default (app: AppService): RouteDefinition => ({
         res.statusCode = 200;
         res.setHeader('content-type', 'text/plain');
 
-        const message = await app.getMessage();
+        const lang: string = req.params?.get('lang') || 'es';
+
+        const message = await app.getMessage(lang);
 
         res.write(message);
     },

@@ -1,14 +1,9 @@
 import { ConfigApplication } from '../config/types';
 
-type Language = 'es' | 'en' | 'pt' | 'it' | 'fr' | 'de';
-
 export class AppService {
     constructor(private readonly config: ConfigApplication) {}
 
-    async getMessage(): Promise<string> {
-        const lang = ['es', 'en', 'pt', 'it', 'fr', 'de'][
-            Math.floor(Math.random() * 6)
-        ];
+    async getMessage(lang: string): Promise<string> {
         const [template, data] = await Promise.all([
             this.getTemplate(lang),
             this.getData(),
@@ -21,7 +16,7 @@ export class AppService {
         );
     }
 
-    private async getTemplate(lang: Language) {
+    private async getTemplate(lang: string) {
         const tempĺates = {
             es: 'Hoy es {{now}} en {{host}} ({{machine}})',
             en: 'Today is {{now}} in {{host}} ({{machine}})',
