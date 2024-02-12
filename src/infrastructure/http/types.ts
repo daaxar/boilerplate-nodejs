@@ -18,7 +18,7 @@ export type RouteHandler = (
     req: ClientRequest,
     res: ServerResponse<IncomingMessage>,
     incoming?: IncomingMessage,
-) => void;
+) => Promise<void>;
 
 export type RouteDefinition = {
     method: ClientRequestMethod;
