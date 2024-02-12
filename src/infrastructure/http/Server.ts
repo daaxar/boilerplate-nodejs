@@ -3,9 +3,10 @@ import { ConfigApplication } from '../../config/types';
 import { Routes } from './Routes';
 import { getClientRequest, getRoute } from './utils';
 import { error404, handlerPOST, handlerGET, error500 } from './handlers';
+import { AppService } from '../../application/app';
 
-export function Server(config: ConfigApplication) {
-    const routes = Routes();
+export function Server(app: AppService, config: ConfigApplication) {
+    const routes = Routes(app);
 
     console.log(`Creating server on ${config.hostname}:${config.http.port}`);
 

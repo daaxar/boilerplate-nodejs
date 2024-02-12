@@ -1,16 +1,15 @@
 import { RouteDefinition } from '../../types';
-import { config } from '../../../../config';
-import { getMessage } from '../../../../application/app';
+import { AppService } from '../../../../application/app';
 
-export const homeRoute: RouteDefinition = {
+export default (app: AppService): RouteDefinition => ({
     method: 'GET',
     path: /\/$|\/index.html?/i,
     handler: async (req, res) => {
         res.statusCode = 200;
         res.setHeader('content-type', 'text/plain');
 
-        const message = await getMessage(config);
+        const message = await app.getMessage();
 
         res.write(message);
     },
-};
+});

@@ -1,1 +1,3 @@
-export { homeRoute } from './home';
+import homeRouteFactory from './home';
+
+export { homeRouteFactory };

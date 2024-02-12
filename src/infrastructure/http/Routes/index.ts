@@ -1,6 +1,9 @@
+import { AppService } from '../../../application/app';
 import { RouteDefinition } from '../types';
-import { homeRoute } from './routes';
+import { homeRouteFactory } from './routes';
 
-export function Routes(): RouteDefinition[] {
+export function Routes(app: AppService): RouteDefinition[] {
+    const homeRoute = homeRouteFactory(app);
+
     return [homeRoute];
 }
