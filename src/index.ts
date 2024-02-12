@@ -1,21 +1,12 @@
-import { hostname, machine } from 'node:os';
-import { createServer } from 'node:http';
+import { config } from './config';
+import { AppService } from './application/app';
+import { Server } from './infrastructure/http/Server';
+import { TemplateMemoryRepository } from './infrastructure/data/TemplateMemoryRepository';
 
-const server = createServer((req, res) => {
-    const now = new Date();
-    res.statusCode = req.url.startsWith('/favicon.ico') ? 404 : 200;
-    res.setHeader('content-type', 'text/plain');
+const repo = new TemplateMemoryRepository(config);
+const app = new AppService(repo, config);
+const srv = Server(app, config);
 
-    console.log(
-        `${now.toISOString()}\t${hostname}\t${res.statusCode}\t${req.url}`,
-    );
-
-    res.write(
-        `Hoy es ${new Date().toLocaleString()} en ${hostname} (${machine()})`,
-    );
-    res.end();
-});
-
-server.listen(process.env.PORT, () => {
-    console.log(`Listening in ${process.env.PORT}!`);
+srv.listen(config.http.port, () => {
+    console.log(`Listening in ${config.http.port}!`);
 });
