@@ -1,11 +1,11 @@
 import path from 'node:path';
 import { readFile, statfs } from 'node:fs/promises';
-import { ConfigApplication } from '../../config/types';
+import { ConfigFilesystemRepository } from '../../config/types';
 import { Template } from '../../model/Template';
 import { TemplateRepository } from '../../application/data/TemplateRepository';
 
 export class TemplateFilesystemRepository implements TemplateRepository {
-    constructor(private readonly config: ConfigApplication) {}
+    constructor(private readonly config: ConfigFilesystemRepository) {}
 
     async getTemplate(lang: string): Promise<Template> {
         const template: Template = await this.getFile(lang);
@@ -16,7 +16,7 @@ export class TemplateFilesystemRepository implements TemplateRepository {
     }
 
     private async getFile(lang: string): Promise<string> {
-        const pathBase = this.config.data?.filesystem?.path;
+        const pathBase = this.config.path;
 
         if (!pathBase) throw new Error('PATH INVALIDO');
 
