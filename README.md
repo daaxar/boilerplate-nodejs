@@ -1,5 +1,12 @@
 # Boilerplate NodeJS
 
+Proyecto ejemplo capacitación de abstracción y modularización paso a paso de un proyecto.
+
+En este repositorio se construye un proyecto de ejemplo en el que, desde cero y paso a paso, se iran aplicando conceptos vistos en la capacitación en cada `branch` del mismo.
+
+## Branches
+![Paso a paso](tree.png)
+
 ## Scripts
 
 ## Install and prepare
