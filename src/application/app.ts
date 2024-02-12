@@ -1,11 +1,15 @@
 import { ConfigApplication } from '../config/types';
+import { TemplateRepository } from './data/TemplateRepository';
 
 export class AppService {
-    constructor(private readonly config: ConfigApplication) {}
+    constructor(
+        private readonly repo: TemplateRepository,
+        private readonly config: ConfigApplication,
+    ) {}
 
     async getMessage(lang: string): Promise<string> {
         const [template, data] = await Promise.all([
-            this.getTemplate(lang),
+            this.repo.getTemplate(lang),
             this.getData(),
         ]);
 
@@ -14,23 +18,6 @@ export class AppService {
                 tpl.replace(`{{${key}}}`, value.toString()),
             template,
         );
-    }
-
-    private async getTemplate(lang: string) {
-        const tempĺates = {
-            es: 'Hoy es {{now}} en {{host}} ({{machine}})',
-            en: 'Today is {{now}} in {{host}} ({{machine}})',
-            pt: 'Hoje é {{now}} em {{host}} ({{machine}})',
-            it: 'Oggi è {{now}} in {{host}} ({{machine}})',
-            fr: "Aujourd'hui, c'est {{now}} à {{host}} ({{machine}})",
-            de: 'Heute ist {{now}} in {{host}} ({{machine}})',
-        };
-
-        const template = tempĺates[lang];
-
-        if (!template) throw new Error('Idioma invalido');
-
-        return template;
     }
 
     private async getData() {
