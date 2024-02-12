@@ -1,5 +1,6 @@
 import path from 'node:path';
-import { readFile, statfs } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { ConfigFilesystemRepository } from '../../config/types';
 import { Template } from '../../model/Template';
 import { TemplateRepository } from '../../application/data/TemplateRepository';
@@ -23,8 +24,9 @@ export class TemplateFilesystemRepository implements TemplateRepository {
         const filePath = path.resolve(pathBase, `template`);
         const fileName = path.resolve(filePath, `${lang}.json`);
 
-        if (!(await statfs(fileName))) throw new Error('Idioma invalido');
+        if (!existsSync(fileName)) throw new Error('Idioma invalido');
 
-        return (await readFile(fileName)).toString();
+        const buffer = await readFile(fileName);
+        return JSON.parse(buffer.toString());
     }
 }
